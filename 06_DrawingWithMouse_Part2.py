@@ -5,6 +5,7 @@ blank_img = np.zeros(shape= (512, 512, 3))
 windowName = "Custom Drawing"
 
 drawing = False
+# Drawing is True when mouse is down, False when mouse is up.
 ix, iy = -1, -1
 
 # Function for drawing
