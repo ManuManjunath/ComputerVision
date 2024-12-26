@@ -11,6 +11,7 @@ while True:
         break
 
     # To close after keeping window open for 2 seconds:
-    # if (cv2.waitKey(2000)):
+    #if (cv2.waitKey(2000)):
+    #    break
 
 cv2.destroyAllWindows()

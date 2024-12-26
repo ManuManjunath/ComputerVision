@@ -8,7 +8,7 @@ drawing = False
 ix, iy = -1, -1
 
 # Function for drawing
-def draw_circle(event, x, y, flags, param):
+def draw(event, x, y, flags, param):
     global drawing, ix, iy
 
     if event == cv2.EVENT_LBUTTONDOWN:
@@ -22,7 +22,7 @@ def draw_circle(event, x, y, flags, param):
         cv2.rectangle(blank_img, pt1 = (ix, iy), pt2 = (x, y), color = (255, 255, 255), thickness = -1)
 
 cv2.namedWindow(winname = windowName)
-cv2.setMouseCallback(windowName, draw_circle)
+cv2.setMouseCallback(windowName, draw)
 
 while True:
     cv2.imshow(windowName, blank_img)
