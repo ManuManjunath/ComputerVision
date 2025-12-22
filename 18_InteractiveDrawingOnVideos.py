@@ -1,0 +1,49 @@
+import cv2
+
+pt1 = (0, 0)
+pt2 = (0, 0)
+topLeftClicked = False
+bottomRightClicked = False
+
+# Callback function rectangle
+def draw_rectangle(event, x, y, flags, params):
+    global pt1, pt2, topLeftClicked, bottomRightClicked
+    if event == cv2.EVENT_LBUTTONDOWN:
+        # Resetting if rectangle is already present
+        if topLeftClicked and bottomRightClicked:
+            pt1 = (0, 0)
+            pt2 = (0, 0)
+            topLeftClicked = False
+            bottomRightClicked = False
+        if topLeftClicked == False:
+            pt1 = (x, y)
+            topLeftClicked = True
+        elif bottomRightClicked == False:
+            pt2 = (x, y)
+            bottomRightClicked = True
+        
+
+
+
+
+# Connect to callback
+
+cap = cv2.VideoCapture(0)
+cv2.namedWindow("Test")
+cv2.setMouseCallback("Test", draw_rectangle)
+
+while True:
+    ret, frame = cap.read()
+    # Draw on the frame
+    if topLeftClicked:
+        cv2.circle(frame, center=pt1, radius=5, color=(0, 0, 255), thickness=-1)
+    if topLeftClicked and bottomRightClicked:
+        cv2.rectangle(frame, pt1, pt2, color=(0, 0, 255), thickness=3)
+
+
+    cv2.imshow('Test', frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
